@@ -1,12 +1,13 @@
 import java.util.Random;
 
 public class Student extends Member {
-        public Student() { // Default Constructor
+        public Student() { 
                 Random rnd = new Random();
                 generate(rnd.nextInt(department.length()), rnd.nextFloat());                        
-        } 
-        public void generate() {
-                        
+        } // Default Constructor
+        public void generate(String m, float g) {
+                major = m;
+                GPA   = g;         
         } // Fills out data members
                 
         @Override
@@ -19,8 +20,16 @@ public class Student extends Member {
                 return String.format("%3s %s %15s %1.2f", label ? "STU" : "",
                                   super.toString(), major, GPA);
         }
-        //public String htmlRow(){ }
-        // public String htmlColumns();
+
+        @Override
+        public String htmlRow(){
+            return String.format("<tr>%s</tr>", htmlColumns());
+        }
+
+        @Override
+        public String htmlColumns(){
+            return String.format("%s<td>%s</td><td>%1.2f</td>", super.htmlColumns, major, GPA);
+        }
         protected String major;
         protected float GPA;
 }
