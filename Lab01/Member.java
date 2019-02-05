@@ -1,3 +1,8 @@
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 
 import java.util.Random;
@@ -27,12 +32,15 @@ public class Member implements Comparable<Member> {
     }
     
     public String htmlRow() {
-        return String.format("<tr>%s</tr>", htmlColumns());
+        return String.format("               <tr>%s" +
+                            "               </tr>", htmlColumns());
     }
 
     public String htmlColumns() {
-        return String.format("<td>%03d-%02d-%04d&nbsp&nbsp</td><td>%15s</td><td>%15s</td>", ID / 1000000, (ID / 10000) % 100,
-                ID % 10000, firstName, lastName);
+        return String.format("\n                  <td>%03d-%02d-%04d</td>\n" +
+                             "                  <td>%s</td>\n" +
+                             "                  <td>%s</td>\n", ID / 1000000, (ID / 10000) % 100,
+                                                        ID % 10000, firstName, lastName);
     }
 
     protected String firstName, lastName;

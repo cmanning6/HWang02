@@ -1,3 +1,8 @@
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 
 import java.util.Random;
@@ -6,7 +11,7 @@ public class Student extends Member {
     public Student() {
         super();
         rnd = new Random();
-        major = Names.degree[rnd.nextInt(Names.degree.length)];
+        major = Names.department[rnd.nextInt(Names.department.length)];
         gpa = rnd.nextFloat() * 3 + 1;
         this.generate();
     }
@@ -20,11 +25,13 @@ public class Student extends Member {
     }
 
     public String htmlRow() {
-        return String.format("<tr>%s</tr>", htmlColumns());
+        return String.format("               <tr>%s" +
+                                "               </tr>", htmlColumns());
     }
     public String htmlColumns() {
-        return String.format("%s<td>%s</td><td>%.2f</td>", super.htmlColumns(),
-                major, gpa);
+        return String.format("%s                  <td>%s</td>" +
+                             "\n                  <td>%.2f</td>\n", super.htmlColumns(),
+                                                                major, gpa);
     }
 
     protected String major; float gpa;

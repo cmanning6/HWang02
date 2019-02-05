@@ -1,4 +1,8 @@
-
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 
 import java.io.*;
@@ -10,14 +14,14 @@ public class Main {
         boolean exit = false;
         Member[] array = null;
         while (!exit) {
-            System.out.printf("Enter H/h/? for help, or command: \n");
+            System.out.print("Enter H/h/? for help, or command: \n");
             Scanner scan = new Scanner(System.in);
             char c = scan.next().charAt(0);
             switch (c) {
-                case 'H':
+                case 'H': //Print the menu
                 case 'h':
                 case '?':
-                    System.out.printf(
+                    System.out.print(
                             "======================== CS 3990 Assignment 1" +
                             " ===============\n" +
                             "G/g/ : Ask for a N, and generate N members " +
@@ -42,11 +46,12 @@ public class Main {
                     break;
                 case 'G':
                 case 'g':
-                    System.out.printf("How many objects do you want to generate? ");
+                    System.out.print("How many objects do you want to generate? ");
                     n = scan.nextInt();
                     array = new Member[n];
                     for (int i = 0; i < n; i++) {
                         int rand = rnd.nextInt(4) + 1;
+                        //Generates random n number of random objects
                         switch (rand) {
                             case 1:
                                 array[i] = new Member();
@@ -69,13 +74,13 @@ public class Main {
                                 array[i].generate();
                                 break;
                             default:
-                                System.out.printf("Please enter a valid option. \n");
+                                System.out.print("Please enter a valid option. \n");
                         }
                     }
                     break;
                 case 'S':
                 case 's':
-                    for (int i = 0; i < n; i++) { 
+                    for (int i = 0; i < n; i++) {       //Uses compare to in Member to sort array
                         for (int j = 0; j < n - 1; j++) { 
                             if (array[j].compareTo(array[j+1]) > 0) {
                                 Member temp = array[j];
@@ -84,16 +89,29 @@ public class Main {
                             }
                         }
                     }
-                    System.out.printf("Array sorted \n");
+                    System.out.print("Array sorted \n");
                     break;
                 case 'V':
                 case 'v':
+                    int count = 0;
+                    //Prints array onto console
                     for (int i = 0; i < n; i++) {
                         System.out.printf("%s\n", array[i].toString(true));
+                        if (count == 39) {
+                            System.out.print("(enter)");
+                            try {
+                                System.in.read();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            count = -1;
+                        }
+                        count++;
                     }
                     break;
                 case 'O':
                 case 'o':
+                    //Output string into HTML file called "output.html"
                     try {
                         PrintWriter output = new PrintWriter("output.html");
                         output.write(
@@ -103,20 +121,19 @@ public class Main {
                                 "           <Title> Lab 1 </Title>\n" +
                                 "       </head>\n" +
                                 "       <body>\n" +
-                                "           <table>\n" +
+                                "           <table cellspacing=\"20\">\n" +
                                 "               <tr>\n" +
-                                "                   <th>ID  </th>\n" +
-                                "                   <th>Last Name&nbsp</th>\n" +
-                                "                   <th>First Name&nbsp</th>\n" +
+                                "                   <th>ID</th>\n" +
+                                "                   <th>Last Name</th>\n" +
+                                "                   <th>First Name</th>\n" +
                                 "                   <th>Major&nbsp</th>\n" +
                                 "                   <th>GPA&nbsp</th>\n" +
-                                "                   <th>Department&nbsp</th>\n" +
+                                "                   <th>Department</th>\n" +
                                 "                   <th>Year Hired</th>\n" +
                                 "                   <th>Job Title</th>\n" +
                                 "                   <th>Degree Held</th>\n" +
                                 "               </tr>\n");
                         for (int i = 0; i < n; i++) {
-                            output.write("               ");
                             output.write(array[i].htmlRow());
                             output.write("\n");
                         }
@@ -130,6 +147,7 @@ public class Main {
                     break;
                 case 'F':
                 case 'f':
+                    //Reads output.html onto console
                     try(BufferedReader br = new BufferedReader(new FileReader("output.html"))) {
                         StringBuilder sb = new StringBuilder();
                         String line = br.readLine();
@@ -162,6 +180,6 @@ public class Main {
         }
     }
     static Random rnd = new Random();
-    static int n;                                     
+    static int n;      //number of Member objects
 }
 

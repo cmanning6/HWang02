@@ -1,6 +1,10 @@
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 import java.util.Random;
-import static Lab01.Member.rnd;
 
 public class Faculty extends Employee {
     public Faculty() {
@@ -19,11 +23,13 @@ public class Faculty extends Employee {
     }
     
     public String htmlRow() {
-        return (String.format("<tr>%s</tr>", htmlColumns()));
+        return (String.format("               <tr>%s" +
+                                "               </tr>", htmlColumns()));
     }
 
     public String htmlColumns() {
-        return (String.format("%s<td></td><td>%s</td>", super.htmlColumns(),
+        return (String.format("%s                  <td></td>\n" +
+                        "                  <td>%s</td>\n", super.htmlColumns(),
                     degreeHeld));
     }
     

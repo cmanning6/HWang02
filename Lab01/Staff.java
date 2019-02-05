@@ -1,3 +1,9 @@
+
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 
 public class Staff extends Employee {
@@ -16,11 +22,12 @@ public class Staff extends Employee {
     }
     
     public String htmlRow() {
-        return String.format("<tr>%s</tr>", htmlColumns());
+        return String.format("               <tr>%s" +
+                            "               </tr>", htmlColumns());
     }
     
     public String htmlColumns() {
-        return String.format("%s<td>%4s</td>", super.htmlColumns(), jobTitle);
+        return String.format("%s                  <td>%4s</td>\n", super.htmlColumns(), jobTitle);
     }
 
     protected String jobTitle;

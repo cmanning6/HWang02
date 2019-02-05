@@ -1,6 +1,11 @@
+
+/**
+ * @Author Ian Thomas , Chad Manning
+ * Created on : February 4th, 2019
+ * Instructor : Dr. Wang
+ */
 package Lab01;
 import java.util.Random;
-import static Lab01.Member.rnd;
 
 public class Employee extends Member {
     public Employee() {
@@ -21,11 +26,15 @@ public class Employee extends Member {
     }
 
     public String htmlRow() {
-        return String.format("<tr>%s</tr>", htmlColumns());
+        return String.format("               <tr>%s" +
+                                "               </tr>", htmlColumns());
     }
     public String htmlColumns() {
-        return String.format("%s<td></td><td></td><td>%s&nbsp</td><td>&nbsp%d</td>",  super.htmlColumns(),
-                    department, yearsHired);
+        return String.format("%s                  <td></td>\n" +
+                        "                  <td></td>\n" +
+                        "                  <td>%s</td>\n" +
+                        "                  <td>%d</td>\n",  super.htmlColumns(),
+                                                        department, yearsHired);
     }
 
     protected String department; int yearsHired;
